@@ -28,3 +28,29 @@ npm install
 ```
 ---
 
+## 📦 Dependencias principales
+express → Framework web
+
+mongoose → ODM para MongoDB
+
+dotenv → Variables de entorno
+
+bcryptjs → Hash de contraseñas
+
+jsonwebtoken → Autenticación JWT
+
+morgan → Logger HTTP
+
+cors → Configuración CORS
+
+nodemon (dev) → Recarga automática
+
+---
+
+## 📡 Endpoints
+🔹 Cambiar solo la URL base según dónde lo pruebes:
+
+Local: http://localhost:3000
+
+Render: https://tp6-final-backend.onrender.com
+
