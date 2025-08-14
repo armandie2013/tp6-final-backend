@@ -29,7 +29,7 @@ npm install
 ---
 
 ## 📦 Dependencias principales
-express → Framework web
+- express → Framework web
 
 - mongoose → ODM para MongoDB
 
