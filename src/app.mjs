@@ -13,7 +13,7 @@ app.use(cors({ origin: env.CORS_ORIGIN, credentials: true }));
 app.use(express.json());
 
 // Healthcheck
-app.get('/', (req, res) => res.json({ ok: true, name: 'Nodo Cine API (MVC)' }));
+app.get('/', (req, res) => res.json({ ok: true, name: 'Modelo-tp6-backend' }));
 
 // 👉 montar rutas ANTES del 404
 app.use('/auth', authRoutes);
