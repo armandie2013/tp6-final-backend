@@ -63,7 +63,6 @@ Render: https://tp6-final-backend.onrender.com
 ## Prueba de respuesta del servidor
 ```
 GET https://tp6-final-backend.onrender.com/
-Content-Type: application/json
 ```
 ## Respuesta esperada
 ```
