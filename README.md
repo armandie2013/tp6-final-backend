@@ -55,6 +55,19 @@ Local: http://localhost:3000
 Render: https://tp6-final-backend.onrender.com
 
 ## 🔐 Autenticación
+## Prueba de respuesta del servidor
+```
+GET https://tp6-final-backend.onrender.com/
+Content-Type: application/json
+```
+## Respuesta esperada
+```
+{
+    "ok": true,
+    "name": "Modelo-tp6-backend"
+}
+```
+
 ## Registro
 ```
 POST /auth/register
