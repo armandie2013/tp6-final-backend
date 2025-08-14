@@ -31,19 +31,19 @@ npm install
 ## 📦 Dependencias principales
 express → Framework web
 
-mongoose → ODM para MongoDB
+- mongoose → ODM para MongoDB
 
-dotenv → Variables de entorno
+- dotenv → Variables de entorno
 
-bcryptjs → Hash de contraseñas
+- bcryptjs → Hash de contraseñas
 
-jsonwebtoken → Autenticación JWT
+- jsonwebtoken → Autenticación JWT
 
-morgan → Logger HTTP
+- morgan → Logger HTTP
 
-cors → Configuración CORS
+- cors → Configuración CORS
 
-nodemon (dev) → Recarga automática
+- nodemon (dev) → Recarga automática
 
 ---
 
@@ -70,7 +70,7 @@ Content-Type: application/json
 
 ## Registro
 ```
-POST /auth/register
+POST https://tp6-final-backend.onrender.com/auth/register
 Content-Type: application/json
 
 {
@@ -80,7 +80,7 @@ Content-Type: application/json
 ```
 ## Login
 ```
-POST /auth/login
+POST https://tp6-final-backend.onrender.com/auth/login
 Content-Type: application/json
 
 {
@@ -100,7 +100,7 @@ Authorization: Bearer <JWT_TOKEN>
 ```
 ## Crear perfil
 ```
-POST /profiles
+POST https://tp6-final-backend.onrender.com/profiles
 {
   "name": "Adulto",
   "type": "adult"
@@ -108,15 +108,15 @@ POST /profiles
 ```
 ## Listar perfiles
 ```
-GET /profiles
+GET https://tp6-final-backend.onrender.com/profiles
 ```
 ## Obtener un perfil
 ```
-GET /profiles/:id
+GET https://tp6-final-backend.onrender.com/profiles/:id
 ```
 ## Editar perfil
 ```
-PUT /profiles/:id
+PUT https://tp6-final-backend.onrender.com/profiles/:id
 {
   "name": "Niño",
   "type": "kid"
@@ -124,7 +124,7 @@ PUT /profiles/:id
 ```
 ## Eliminar perfil
 ```
-DELETE /profiles/:id
+DELETE https://tp6-final-backend.onrender.com/profiles/:id
 ```
 ---
 ## 🧪 Pruebas rápidas con Postman
