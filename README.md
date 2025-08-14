@@ -81,5 +81,53 @@ Content-Type: application/json
   "token": "<JWT_TOKEN>"
 }
 ```
+## 👤 Perfiles (requiere autenticación)
+```
+Authorization: Bearer <JWT_TOKEN>
+```
+## Crear perfil
+```
+POST /profiles
+{
+  "name": "Adulto",
+  "type": "adult"
+}
+```
+## Listar perfiles
+```
+GET /profiles
+```
+## Obtener un perfil
+```
+GET /profiles/:id
+```
+## Editar perfil
+```
+PUT /profiles/:id
+{
+  "name": "Niño",
+  "type": "kid"
+}
+```
+## Eliminar perfil
+```
+DELETE /profiles/:id
+```
+---
+## 🧪 Pruebas rápidas con Postman
+-  Abrir Postman
+-  Crear nueva request
+-  Probar directamente en producción usando:
+```
+https://tp6-final-backend.onrender.com/auth/register
+https://tp6-final-backend.onrender.com/auth/login
+https://tp6-final-backend.onrender.com/profiles
+```
+- Usar el token devuelto en el login para acceder a rutas protegidas.
+ ## 📜 Notas
+- Contraseñas cifradas con bcryptjs
+- Autenticación mediante JWT
+- Proyecto listo para deploy en Render
+
 
 
