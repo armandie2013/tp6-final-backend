@@ -54,3 +54,32 @@ Local: http://localhost:3000
 
 Render: https://tp6-final-backend.onrender.com
 
+## 🔐 Autenticación
+## Registro
+```
+POST /auth/register
+Content-Type: application/json
+
+{
+  "email": "usuario@example.com",
+  "password": "123456"
+}
+```
+## Login
+```
+POST /auth/login
+Content-Type: application/json
+
+{
+  "email": "usuario@example.com",
+  "password": "123456"
+}
+```
+## Respuesta de login:
+```
+{
+  "token": "<JWT_TOKEN>"
+}
+```
+
+
