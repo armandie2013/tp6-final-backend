@@ -46,10 +46,11 @@ npm install
 - nodemon (dev) → Recarga automática
 
 ---
-## Instalacion de dependencias
+## 📦 Instalacion de dependencias
 ```
 npm install express mongoose dotenv cors helmet morgan bcrypt jsonwebtoken axios
 ```
+---
 
 ## 📡 Endpoints
 🔹 Cambiar solo la URL base según dónde lo pruebes:
