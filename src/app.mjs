@@ -2,6 +2,7 @@ import express from 'express';
 import cors from 'cors';
 import { env } from './config/env.mjs';
 import { connectDB } from './config/db.mjs';
+import watchlistRoutes from './routes/watchlist.routes.mjs';
 
 // IMPORTS DE RUTAS
 import authRoutes from './routes/auth.routes.mjs';
@@ -19,6 +20,7 @@ app.get('/', (req, res) => res.json({ ok: true, name: 'Modelo-tp6-backend' }));
 app.use('/auth', authRoutes);
 app.use('/profiles', profileRoutes);
 app.use('/movies', moviesRoutes);
+app.use('/watchlist', watchlistRoutes);
 
 // 404
 app.use((req, res) => res.status(404).json({ error: 'Not found' }));
