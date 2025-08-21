@@ -1,8 +1,12 @@
 import { listMovies, getMovie, createMovie, updateMovie, deleteMovie } from '../services/movieService.mjs';
 
 export async function getMovies(req, res) {
-  const data = await listMovies(req.query);
-  res.json(data);
+  try {
+    const data = await listMovies(req.query, req.auth?.sub); // ← pasar userId
+    res.json(data);
+  } catch (e) {
+    res.status(500).json({ error: e.message });
+  }
 }
 
 export async function getMovieById(req, res) {

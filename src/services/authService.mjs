@@ -8,14 +8,25 @@ export async function registerUser({ email, password }) {
   const exists = await User.findOne({ email });
   if (exists) throw new Error('Email ya registrado');
   const passwordHash = await bcrypt.hash(password, 10);
-  return User.create({ email, passwordHash });
+  return User.create({ email, passwordHash }); // roles = ['owner'] por defecto en el modelo
 }
 
 export async function loginUser({ email, password }) {
   const user = await User.findOne({ email });
   if (!user) throw new Error('Credenciales inválidas');
+
   const ok = await bcrypt.compare(password, user.passwordHash);
   if (!ok) throw new Error('Credenciales inválidas');
-  const token = jwt.sign({ sub: user._id.toString(), role: 'owner' }, env.JWT_SECRET, { expiresIn: '7d' });
+
+  // 🚀 Token con roles
+  const token = jwt.sign(
+    {
+      sub: user._id.toString(),
+      roles: user.roles || ['owner']
+    },
+    env.JWT_SECRET,
+    { expiresIn: '7d' }
+  );
+
   return { token };
 }

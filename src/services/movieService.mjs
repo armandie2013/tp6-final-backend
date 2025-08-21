@@ -1,4 +1,5 @@
 import Movie from '../models/Movie.mjs';
+import Profile from '../models/Profile.mjs';
 
 function buildPagination(query) {
   const page  = Math.max(1, parseInt(query.page ?? '1', 10));
@@ -15,9 +16,22 @@ function buildFilters(q) {
   return filter;
 }
 
-export async function listMovies(query = {}) {
+/**
+ * Lista películas con paginado y filtros. Si se recibe un profileId que pertenece al userId
+ * y el perfil es 'kid', se aplica un gate por ageRating (solo G/PG).
+ */
+export async function listMovies(query = {}, userId) {
   const { page, limit, skip } = buildPagination(query);
   const filter = buildFilters(query);
+
+  // Gate por perfil niño (opcional si viene profileId)
+  if (query.profileId && userId) {
+    const profile = await Profile.findOne({ _id: query.profileId, userId });
+    if (profile && profile.type === 'kid') {
+      const allowed = ['G', 'PG']; // ajustá tu política si querés
+      filter.ageRating = { $in: allowed };
+    }
+  }
 
   const [docs, total] = await Promise.all([
     Movie.find(filter).sort({ createdAt: -1 }).skip(skip).limit(limit),
