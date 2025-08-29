@@ -9,11 +9,12 @@ function inferAgeRatingFromGenres(genres = []) {
 
 export async function searchTmdb(req, res) {
   try {
-    const { query, page } = req.query;
-    const results = await tmdbSearch(query, page || 1);
-    res.json({ results });
+    const q = (req.query.q ?? req.query.query ?? '').trim(); // ← acepta q o query
+    if (!q) return res.status(400).json({ error: 'query requerido' });
+    const results = await tmdbSearch(q);
+    res.json(results);
   } catch (e) {
-    res.status(400).json({ error: e.message || 'Error TMDb search' });
+    res.status(500).json({ error: 'Error buscando en TMDb' });
   }
 }
 
