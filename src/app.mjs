@@ -11,9 +11,16 @@ import moviesRoutes from './routes/movies.routes.mjs';
 import watchlistRoutes from './routes/watchlist.routes.mjs';
 import tmdbRoutes from './routes/tmdb.routes.mjs';
 
+import { notFound, errorHandler } from './middlewares/errors.mjs';
+
 
 const app = express();
-app.use(cors({ origin: env.CORS_ORIGIN, credentials: true }));
+app.use(cors({
+  origin: env.CORS_ORIGIN?.split(',') || '*',  // permite lista separada por comas en .env
+  credentials: true,
+  methods: ['GET','POST','PUT','DELETE','OPTIONS'],
+  allowedHeaders: ['Content-Type','Authorization']
+}));
 app.use(express.json());
 
 // Healthcheck
@@ -25,6 +32,9 @@ app.use('/profiles', profileRoutes);
 app.use('/movies', moviesRoutes);
 app.use('/watchlist', watchlistRoutes);
 app.use('/tmdb', tmdbRoutes);
+
+app.use(notFound);
+app.use(errorHandler);
 
 // 404
 app.use((req, res) => res.status(404).json({ error: 'Not found' }));
