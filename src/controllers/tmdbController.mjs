@@ -5,7 +5,7 @@ import {
   tmdbGetCertification,
 } from "../services/tmdbService.mjs";
 
-// GET /tmdb/search?query=matrix  (también acepta ?q=)
+
 export async function searchTmdb(req, res) {
   try {
     const q = (req.query.q ?? req.query.query ?? "").trim();
@@ -13,7 +13,7 @@ export async function searchTmdb(req, res) {
 
     const results = await tmdbSearch(q);
 
-    // ✅ enriquecer los primeros N con ageRating real para no exceder rate limits
+    
     const N = Math.min(results.length, 12);
     await Promise.all(
       results.slice(0, N).map(async (r, idx) => {
@@ -41,7 +41,7 @@ export async function importFromTmdb(req, res) {
     const data = await tmdbGetMovie(tmdbId);
     const cert = await tmdbGetCertification(tmdbId);
 
-    // upsert por tmdbId si lo guardás; si no, podés usar (title+year) como clave
+    
     const doc = await Movie.findOneAndUpdate(
       { tmdbId },
       {
@@ -51,7 +51,7 @@ export async function importFromTmdb(req, res) {
         genres: Array.isArray(data.genres) ? data.genres.map((g) => g.name).filter(Boolean) : [],
         poster: data.poster_path ? `https://image.tmdb.org/t/p/w500${data.poster_path}` : undefined,
         overview: data.overview,
-        // ✅ guardar certificación si existe; si no, no pisar (queda vacío por defecto)
+        
         ...(cert ? { ageRating: cert } : {}),
       },
       { new: true, upsert: true, setDefaultsOnInsert: true }
