@@ -14,6 +14,7 @@ import { notFound, errorHandler } from './middlewares/errors.mjs';
 
 const app = express();
 
+// Configuramos CORS con origin
 app.use(cors({
   origin: env.CORS_ORIGIN?.split(',') || '*',  // lista separada por comas en .env
   credentials: true,
@@ -26,7 +27,7 @@ app.use(express.json());
 // Healthcheck
 app.get('/', (req, res) => res.json({ ok: true, name: 'Modelo-tp6-backend' }));
 
-// 👉 montar rutas ANTES del 404
+// Montamos las rutas ANTES del 404
 app.use('/auth', authRoutes);
 app.use('/profiles', profileRoutes);
 app.use('/movies', moviesRoutes);

@@ -1,5 +1,6 @@
 import 'dotenv/config';
 
+// Conectamos con las variables de entorno
 export const env = {
   PORT: process.env.PORT || 4000,
   MONGODB_URI: process.env.MONGODB_URI,

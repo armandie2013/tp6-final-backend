@@ -1,3 +1,4 @@
+// requireRole(...allowed): chequea req.auth.roles (o req.auth.role) y permite pasar si hay intersección con los roles permitidos; si no, 403.
 export function requireRole(...allowed) {
   return (req, res, next) => {
     const roles = Array.isArray(req.auth?.roles)

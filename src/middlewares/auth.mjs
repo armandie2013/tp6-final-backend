@@ -7,6 +7,9 @@ function extractToken(req) {
   return token;
 }
 
+//requireAccount: extrae Bearer token del header Authorization, 
+// verifica con JWT_SECRET, y coloca el payload en req.auth (p. ej. { sub, role | roles }). 
+// Si falta o es inválido → 401.
 export function requireAccount(req, res, next) {
   const token = extractToken(req);
   if (!token) return res.status(401).json({ error: 'Token requerido' });
